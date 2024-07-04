@@ -1,0 +1,32 @@
+services:
+  app:
+    container_name: app
+    image: node:18.20.3
+    tty: true
+    volumes:
+      - ./app:/app
+    ports:
+      - 5555:5555 # Prisma Studio用
+    working_dir: /app
+    networks:
+      - default
+  db:
+    image: postgres:latest
+    container_name: indigo-v2-db
+    ports:
+      - 5432:5432 # PostgreSQL のデフォルトポート
+    env_file:
+      - .env
+    volumes:
+      # 設定ファイルディレクトリにマウントする
+      - ./postgres/conf.d:/etc/postgresql/conf.d
+      # 永続化
+      - ./postgres/data:/var/lib/postgresql/
+    # ネットワーク
+    networks:
+      - default
+
+# ネットワーク
+networks:
+  default:
+    driver: bridge
