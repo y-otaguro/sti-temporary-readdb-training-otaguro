@@ -20,8 +20,6 @@ services:
     volumes:
       # 設定ファイルディレクトリにマウントする
       - ./postgres/conf.d:/etc/postgresql/conf.d
-      # 永続化
-      - ./postgres/data:/var/lib/postgresql/
     # ネットワーク
     networks:
       - default

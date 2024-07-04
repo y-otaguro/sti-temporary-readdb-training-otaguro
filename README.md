@@ -8,7 +8,7 @@ docker compose up -d
 docker compose stop
 ```
 
-## コンテナの削除
+## コンテナの削除(注:dbの内容も消えます)
 ```
 docker compose down
 ```
